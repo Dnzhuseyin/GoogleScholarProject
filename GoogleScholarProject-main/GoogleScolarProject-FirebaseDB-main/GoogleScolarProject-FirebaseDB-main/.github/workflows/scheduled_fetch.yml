@@ -1,0 +1,36 @@
+name: Google Scholar Data Fetch and Upload
+
+on:
+  schedule:
+    - cron: "0 0 * * 0"  # Her hafta Pazar günü UTC saat 00:00'da çalıştırır
+  workflow_dispatch:  # Manuel olarak elle çalıştırma seçeneği sunar
+
+jobs:
+  fetch_and_upload:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install firebase-admin requests beautifulsoup4
+
+      - name: Set up Firebase credentials
+        env:
+          FIREBASE_CREDENTIALS: ${{ secrets.FIREBASE_CREDENTIALS }}
+        run: |
+          echo "$FIREBASE_CREDENTIALS" > ./firebase_key.json
+
+      - name: Run data fetch and upload
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: "${{ github.workspace }}/firebase_key.json"
+        run: |
+          python firat_uni_veri.py  # Kod dosyanızın adı

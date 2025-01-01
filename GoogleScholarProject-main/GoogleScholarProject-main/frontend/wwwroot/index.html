@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akademik Veri Görüntüleme Sistemi</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-content">
+            <h1>Google Akademik Veri Analizi</h1>
+            <p>Türkiye'deki Akademisyenlerin Yayın ve Atıf İstatistikleri</p>
+        </div>
+    </header>
+
+    <div id="turkey-map"></div>
+
+    <div id="universityModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal()">&times;</span>
+            <h2 style="text-align: center;">Fırat Üniversitesi</h2>
+            <img src="/assets/firat-logo.png" alt="Fırat Üniversitesi Logo" class="university-logo" onclick="showFacultyButton()">
+            <button id="facultyButton" class="faculty-button" onclick="showDepartmentButton()">
+                Teknoloji Fakültesi
+            </button>
+            <button id="departmentButton" class="department-button">
+                Yazılım Mühendisliği
+            </button>
+        </div>
+    </div>
+
+    <div id="academicModal" class="modal">
+        <div class="modal-content academic-content">
+            <span class="close-button" onclick="closeAcademicModal()">&times;</span>
+            <h2>Yazılım Mühendisliği Bölümü Akademisyenleri</h2>
+            
+            <div class="academics-container">
+                <!-- Akademisyenler buraya dinamik olarak eklenecek -->
+            </div>
+        </div>
+    </div>
+
+    <script src="/scripts/main.js"></script>
+</body>
+</html>
